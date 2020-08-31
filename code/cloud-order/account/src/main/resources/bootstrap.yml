@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: cloud-account
+  cloud:
+    config:
+      uri: http://localhost:7000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
+    instance-id: cloud-account

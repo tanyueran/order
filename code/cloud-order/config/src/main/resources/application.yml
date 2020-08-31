@@ -1,0 +1,13 @@
+server:
+  port: 7000
+
+spring:
+  application:
+    name: cloud-config
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config-file
