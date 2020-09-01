@@ -1,5 +1,5 @@
 server:
-  port: 3001
+  port: 3002
 eureka:
   client:
     service-url:
@@ -8,4 +8,4 @@ eureka:
     register-with-eureka: true
   instance:
     prefer-ip-address: true
-    instance-id: cloud-account
+    instance-id: cloud-order

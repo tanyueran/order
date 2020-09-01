@@ -41,7 +41,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- spring cloud config-file 服务端包 -->
+        <!-- spring cloud config 服务端包 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-server</artifactId>

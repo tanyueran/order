@@ -3,4 +3,4 @@ spring:
     name: cloud-gateway
   cloud:
     config:
-      uri: http://localhost:7000
+      uri: http://192.168.150.131:7000
