@@ -1,0 +1,42 @@
+server:
+  port: 80
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        #       account
+        - id: account
+          uri: lb://CLOUD-ACCOUNT
+          predicates:
+            - Path=/account/**
+          filters:
+            - RewritePath=/account/(?<segment>.*), /$\{segment}
+        #       common
+        - id: common
+          uri: lb://CLOUD-COMMON
+          predicates:
+            - Path=/common/**
+          filters:
+            - RewritePath=/common/(?<segment>.*), /$\{segment}
+        #       order
+        - id: order
+          uri: lb://CLOUD-ORDERS
+          predicates:
+            - Path=/order/**
+          filters:
+            - RewritePath=/order/(?<segment>.*), /$\{segment}
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://192.168.150.131:7001/eureka
+  instance:
+    instance-id: cloud-gateway
+    prefer-ip-address: true

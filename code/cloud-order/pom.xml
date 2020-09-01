@@ -7,11 +7,12 @@
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
-        <module>config</module>
-        <module>eureka</module>
-        <module>gateway</module>
-        <module>account</module>
-        <module>order</module>
+        <module>cloud-config</module>
+        <module>cloud-eureka</module>
+        <module>cloud-gateway</module>
+        <module>cloud-account</module>
+        <module>cloud-orders</module>
+        <module>cloud-common</module>
         <module>common</module>
     </modules>
     <name>cloud-order</name>
@@ -67,7 +68,7 @@
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
-                <version>1.2.71</version>
+                <version>1.2.73</version>
             </dependency>
 
             <!--druid-->
