@@ -35,8 +35,11 @@ eureka:
   client:
     fetch-registry: true
     register-with-eureka: true
+    registry-fetch-interval-seconds: 3
     service-url:
-      defaultZone: http://192.168.150.131:7001/eureka
+      defaultZone: http://192.168.150.128:7001/eureka
   instance:
     instance-id: cloud-gateway
     prefer-ip-address: true
+key:
+  public: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIZAqCz5TQeb2z6GzN9jZB8fiJrFQRSUjO9EDtKBoJRjdeintP8dSgSihsQzmZUfNixURizGM1SSKdv/t9xRcJ8CAwEAAQ==

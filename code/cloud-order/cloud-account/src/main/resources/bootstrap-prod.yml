@@ -4,4 +4,4 @@ spring:
   cloud:
     config:
       name: cloud-account
-      uri: http://192.168.150.131:7000
+      uri: http://192.168.150.128:7000

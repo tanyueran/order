@@ -15,3 +15,26 @@ spring:
       charset: UTF-8
       enabled: true
       force: true
+  datasource:
+    username: root
+    password: password
+    url: jdbc:mysql://192.168.150.128/cloud-order
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    port: 6379
+    database: 1
+    host: 192.168.150.128
+    password: password
+
+
+logging:
+  level:
+    com:
+      github:
+        tanyueran:
+          mapper: debug
+
+key:
+  private: MIIBVgIBADANBgkqhkiG9w0BAQEFAASCAUAwggE8AgEAAkEAhkCoLPlNB5vbPobM32NkHx+ImsVBFJSM70QO0oGglGN16Ke0/x1KBKKGxDOZlR82LFRGLMYzVJIp2/+33FFwnwIDAQABAkBHqR+b0f7B/vmKaJ3W59C7pDNgmcXhXGHWHXfj+XljeuRQm3te20hScg5QE78skyUyFq2XMV60SNVXWqJpxNyxAiEA0QDxArBAWRTZmbTty60E9XozxUhOtIMCnf6vHWNggAUCIQCkcMDAbe5C/RYYu5kAWtyi7J0eGYe+AVJbBcEr3U5jUwIhAKGnusI7lOnR6KSsfqjkwEsmI9jZnpacJnARx1xRuxgJAiEAjhtSt/lIemO1ANK+OmxLWBEbBrQRdsY1oaurcHjkETkCIQDI0ObLXfE+0CRpbwrPLlCcVfMA1MyU6WmpS9jm9B8lTQ==
+  public: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIZAqCz5TQeb2z6GzN9jZB8fiJrFQRSUjO9EDtKBoJRjdeintP8dSgSihsQzmZUfNixURizGM1SSKdv/t9xRcJ8CAwEAAQ==

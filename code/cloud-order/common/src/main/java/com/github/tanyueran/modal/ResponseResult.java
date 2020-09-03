@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * 微服务的所有接口，响应数据的结构
+ * code: 按照http code走
  */
 public class ResponseResult implements Serializable {
     private Integer code;
