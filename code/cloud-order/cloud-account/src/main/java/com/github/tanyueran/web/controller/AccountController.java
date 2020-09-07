@@ -2,26 +2,24 @@ package com.github.tanyueran.web.controller;
 
 import com.github.tanyueran.modal.CloudUser;
 import com.github.tanyueran.service.AccountService;
+import com.github.tanyueran.web.vo.User;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.util.StringUtils;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 
 @RestController
 @ApiOperation("账号相关")
+@Validated
 public class AccountController {
 
     @Autowired
     private AccountService accountService;
 
     @PostMapping("/login")
-    public String login(@RequestBody CloudUser user) throws Exception {
-        if (StringUtils.isEmpty(user.getUserCode()) || StringUtils.isEmpty(user.getPassword())) {
-            throw new Exception("账号密码不可为空！");
-        }
+    public String login(@RequestBody User user) throws Exception {
         CloudUser u = new CloudUser();
         u.setUserCode(user.getUserCode());
         u.setPassword(user.getPassword());
@@ -29,6 +27,7 @@ public class AccountController {
         return token;
     }
 
+    // 请求用户信息
     @GetMapping("/info/{userCode}")
     public CloudUser getUserInfo(@PathVariable("userCode") String userCode) {
         CloudUser cloudUser = new CloudUser();
@@ -38,15 +37,22 @@ public class AccountController {
         return user;
     }
 
+    // 注册
+    @PostMapping("/register")
+    public Boolean register(@RequestBody CloudUser cloudUser) throws Exception {
+        return accountService.register(cloudUser);
+    }
+
     @GetMapping("/a")
-    @RolesAllowed("MANAGER")
+    @PreAuthorize("hasRole('MANAGER')")
     public String A() {
         return "a";
     }
 
     @GetMapping("/b")
-    @RolesAllowed("USER")
+    @PreAuthorize("hasRole('USER')")
     public String B() {
         return "b";
     }
+
 }

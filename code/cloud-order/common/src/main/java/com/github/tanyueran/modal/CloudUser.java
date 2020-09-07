@@ -1,8 +1,11 @@
 package com.github.tanyueran.modal;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,12 +15,14 @@ public class CloudUser implements Serializable {
      * 主键
      */
     @Id
+    @NotBlank(message = "id不可为空")
     private String id;
 
     /**
      * 账号
      */
     @Column(name = "user_code")
+    @NotBlank(message = "账号不可为空")
     private String userCode;
 
     /**
@@ -51,12 +56,14 @@ public class CloudUser implements Serializable {
      * 创建时间
      */
     @Column(name = "create_time")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
      * 更新时间
      */
     @Column(name = "update_time")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     /**

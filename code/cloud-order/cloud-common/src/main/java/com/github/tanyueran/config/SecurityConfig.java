@@ -1,13 +1,10 @@
 package com.github.tanyueran.config;
 
 import com.github.tanyueran.filter.JWTAuthorizationFilter;
-import com.github.tanyueran.service.AccountService;
 import com.github.tanyueran.web.handler.MyAccessDeniedHandler;
 import com.github.tanyueran.web.handler.MyAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -34,9 +31,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PublicKey publicKey;
 
-    @Autowired
-    private AccountService accountService;
-
     @Resource(name = "myRedisTemplate")
     private RedisTemplate redisTemplate;
 
@@ -51,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/swagger-ui.html",
                 "/webjars/**",
                 "/druid/**",// druid
-                "/login"// 登录的
+                "/id/*"// id
         );
     }
 
@@ -63,7 +57,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
          * */
         http.authorizeRequests()
                 .antMatchers("/actuator/**").permitAll()
-                .antMatchers("/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 // 禁用表单认证和HTTPbasic
@@ -80,6 +73,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(new MyAuthenticationEntryPoint())
                 .and()
                 // 添加jwt校验
-                .addFilterBefore(new JWTAuthorizationFilter(accountService, publicKey, redisTemplate), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new JWTAuthorizationFilter(publicKey, redisTemplate), UsernamePasswordAuthenticationFilter.class);
     }
 }

@@ -20,4 +20,22 @@ public interface AccountService {
      * @return CloudUser
      */
     CloudUser getUser(CloudUser cloudUser);
+
+    /**
+     * 注册用户
+     *
+     * @param cloudUser
+     * @return Boolean 是否注册成功
+     */
+    Boolean register(CloudUser cloudUser) throws Exception;
+
+    /**
+     * 检车账号是否可以使用
+     *
+     * @param userCode
+     * @return Boolean 账号是否可以使用
+     */
+    Boolean checkUserCodeCanDo(String userCode) throws Exception;
+
+
 }
