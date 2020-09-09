@@ -18,7 +18,7 @@ spring:
   datasource:
     username: root
     password: password
-    url: jdbc:mysql://192.168.150.128/cloud-order
+    url: jdbc:mysql://192.168.150.128/cloud-order?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
   redis:

@@ -28,7 +28,6 @@ import java.util.Map;
  * @since 2020-09-08
  */
 @RestController
-@Validated
 @Api(value = "账户controller", tags = "账户相关")
 public class CloudUserController {
 
@@ -40,7 +39,7 @@ public class CloudUserController {
 
     @PostMapping("/login")
     @ApiOperation("登录")
-    public String login(@RequestBody User user) throws Exception {
+    public String login(@Validated @RequestBody User user) throws Exception {
         return cloudUserService.login(user);
     }
 
@@ -70,11 +69,9 @@ public class CloudUserController {
     // 注册
     @PostMapping("/register")
     @ApiOperation("注册")
-    public Boolean register(@RequestBody CloudUser cloudUser) throws Exception {
+    public Boolean register(@Validated @RequestBody CloudUser cloudUser) throws Exception {
         boolean save = cloudUserService.save(cloudUser);
         return save;
     }
-
-    // 人员分页查询
 
 }

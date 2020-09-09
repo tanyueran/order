@@ -45,6 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/swagger-ui.html",
                 "/webjars/**",
                 "/druid/**",// druid
+                "/file/view/*",// 图片预览
+                "/file/download/*",// 图片下载
                 "/id/*"// id
         );
     }
