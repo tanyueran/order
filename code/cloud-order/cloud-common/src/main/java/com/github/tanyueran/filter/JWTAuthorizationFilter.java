@@ -3,7 +3,7 @@ package com.github.tanyueran.filter;
 import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSONObject;
 import com.github.tanyueran.constant.RedisPre;
-import com.github.tanyueran.modal.CloudUser;
+import com.github.tanyueran.modal.dao.CloudUser;
 import com.github.tanyueran.utils.JwtUtil;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

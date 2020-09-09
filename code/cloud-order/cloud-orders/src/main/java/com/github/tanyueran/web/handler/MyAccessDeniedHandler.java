@@ -1,7 +1,8 @@
 package com.github.tanyueran.web.handler;
 
 import com.alibaba.fastjson.JSON;
-import com.github.tanyueran.modal.ResponseResult;
+import com.github.tanyueran.modal.vo.ResponseResult;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException;
@@ -14,14 +15,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 // 处理认证过的用户访问无权限资源时的异常
+@Slf4j
 public class MyAccessDeniedHandler implements AccessDeniedHandler {
 
-    Logger logger = LoggerFactory.getLogger(MyAccessDeniedHandler.class);
 
     @Override
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
-        logger.info("无权访问异常：+++++++++++++++++++");
-        logger.error(e.getMessage(), e);
+        log.info("无权访问异常：+++++++++++++++++++");
+        log.error(e.getMessage(), e);
         // 可以针对不同的异常，返回响应的文字
         httpServletResponse.setContentType("application/json;charset=utf-8");
         PrintWriter writer = httpServletResponse.getWriter();

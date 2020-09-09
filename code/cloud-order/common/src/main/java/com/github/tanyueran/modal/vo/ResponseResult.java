@@ -1,4 +1,4 @@
-package com.github.tanyueran.modal;
+package com.github.tanyueran.modal.vo;
 
 import java.io.Serializable;
 

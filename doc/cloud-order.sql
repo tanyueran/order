@@ -1,23 +1,23 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2020/9/2 14:23:35                            */
+/* Created on:     2020/9/9 10:07:41                            */
 /*==============================================================*/
 
 
-drop table if exists file_tab;
+drop table if exists tab_file;
 
-drop table if exists food_img_tab;
+drop table if exists tab_food;
 
-drop table if exists food_tab;
+drop table if exists tab_food_img;
 
-drop table if exists order_tab;
+drop table if exists tab_order;
 
-drop table if exists user_tab;
+drop table if exists tab_user;
 
 /*==============================================================*/
-/* Table: file_tab                                              */
+/* Table: tab_file                                              */
 /*==============================================================*/
-create table file_tab
+create table tab_file
 (
    id                   varchar(255) not null comment '主键',
    file_name            varchar(255) comment '文件名称',
@@ -28,23 +28,12 @@ create table file_tab
    primary key (id)
 );
 
-alter table file_tab comment '文件表';
+alter table tab_file comment '文件表';
 
 /*==============================================================*/
-/* Table: food_img_tab                                          */
+/* Table: tab_food                                              */
 /*==============================================================*/
-create table food_img_tab
-(
-   food_id              varchar(255) comment '菜品id',
-   file_id              varchar(255) comment '图片id'
-);
-
-alter table food_img_tab comment '菜品图片中间表';
-
-/*==============================================================*/
-/* Table: food_tab                                              */
-/*==============================================================*/
-create table food_tab
+create table tab_food
 (
    id                   varchar(255) not null comment '主键',
    food_name            varchar(255) comment '菜品名称',
@@ -57,12 +46,23 @@ create table food_tab
    primary key (id)
 );
 
-alter table food_tab comment '菜品表';
+alter table tab_food comment '菜品表';
 
 /*==============================================================*/
-/* Table: order_tab                                             */
+/* Table: tab_food_img                                          */
 /*==============================================================*/
-create table order_tab
+create table tab_food_img
+(
+   food_id              varchar(255) comment '菜品id',
+   file_id              varchar(255) comment '图片id'
+);
+
+alter table tab_food_img comment '菜品图片中间表';
+
+/*==============================================================*/
+/* Table: tab_order                                             */
+/*==============================================================*/
+create table tab_order
 (
    id                   varchar(255) not null comment '主键',
    user_id              varchar(255) comment '用户id',
@@ -72,36 +72,36 @@ create table order_tab
    primary key (id)
 );
 
-alter table order_tab comment '订单表';
+alter table tab_order comment '订单表';
 
 /*==============================================================*/
-/* Table: user_tab                                              */
+/* Table: tab_user                                              */
 /*==============================================================*/
-create table user_tab
+create table tab_user
 (
    id                   varchar(255) not null comment '主键',
-   user_codde           varchar(255) comment '账号',
+   user_code            varchar(255) comment '账号',
    user_name            varchar(255) comment '用户姓名',
-   password             varchar(255) comment '密码',
+   user_pwd             varchar(255) comment '密码',
    file_id              varchar(255) comment '头像id',
-   type                 int comment '用户类型',
+   type                 int comment '用户类型(0：普通用户，1|：管理员用户)',
    remark               varchar(255) comment '备注',
    create_time          datetime default CURRENT_TIMESTAMP comment '创建时间',
    update_time          datetime default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
    primary key (id)
 );
 
-alter table user_tab comment '账户表';
+alter table tab_user comment '账户表';
 
-alter table food_img_tab add constraint FK_Reference_3 foreign key (food_id)
-      references food_tab (id) on delete restrict on update restrict;
+alter table tab_food_img add constraint FK_Reference_3 foreign key (food_id)
+      references tab_food (id) on delete restrict on update restrict;
 
-alter table food_img_tab add constraint FK_Reference_4 foreign key (file_id)
-      references file_tab (id) on delete restrict on update restrict;
+alter table tab_food_img add constraint FK_Reference_4 foreign key (file_id)
+      references tab_file (id) on delete restrict on update restrict;
 
-alter table order_tab add constraint FK_Reference_1 foreign key (user_id)
-      references user_tab (id) on delete restrict on update restrict;
+alter table tab_order add constraint FK_Reference_1 foreign key (user_id)
+      references tab_user (id) on delete restrict on update restrict;
 
-alter table order_tab add constraint FK_Reference_2 foreign key (food_id)
-      references food_tab (id) on delete restrict on update restrict;
+alter table tab_order add constraint FK_Reference_2 foreign key (food_id)
+      references tab_food (id) on delete restrict on update restrict;
 

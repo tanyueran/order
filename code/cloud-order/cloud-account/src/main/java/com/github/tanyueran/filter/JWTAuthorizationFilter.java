@@ -3,8 +3,8 @@ package com.github.tanyueran.filter;
 import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSONObject;
 import com.github.tanyueran.constant.RedisPre;
-import com.github.tanyueran.modal.CloudUser;
-import com.github.tanyueran.service.AccountService;
+import com.github.tanyueran.modal.dao.CloudUser;
+import com.github.tanyueran.service.CloudUserService;
 import com.github.tanyueran.utils.JwtUtil;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,15 +26,15 @@ import java.util.Map;
 
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
-    private AccountService accountService;
+    private CloudUserService cloudUserService;
     private PublicKey publicKey;
     private RedisTemplate redisTemplate;
 
     public JWTAuthorizationFilter() {
     }
 
-    public JWTAuthorizationFilter(AccountService accountService, PublicKey publicKey, RedisTemplate redisTemplate) {
-        this.accountService = accountService;
+    public JWTAuthorizationFilter(CloudUserService cloudUserService, PublicKey publicKey, RedisTemplate redisTemplate) {
+        this.cloudUserService = cloudUserService;
         this.publicKey = publicKey;
         this.redisTemplate = redisTemplate;
     }
